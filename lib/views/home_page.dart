@@ -11,85 +11,69 @@ class MyHomePage extends StatelessWidget {
     // ItemProvider itemProvider = Provider.of<ItemProvider>(context);
     // PizzaProvider pizzaProvider = Provider.of<PizzaProvider>(context);
     print("object");
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => ItemProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => PizzaProvider(),
-        ),
-      ],
-      builder: (context, child) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text("Home Page"),
-          ),
-          body: Center(
-            child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Page"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '${Provider.of<ItemProvider>(context).itemName}\'s Quantity : ',
+            ),
+            Text(
+              '${Provider.of<ItemProvider>(context).numberOfItem}',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  '${Provider.of<ItemProvider>(context).itemName}\'s Quantity : ',
-                ),
-                Text(
-                  '${Provider.of<ItemProvider>(context).numberOfItem}',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Provider.of<ItemProvider>(context, listen: false)
-                            .changeNumberOfItem(Provider.of<ItemProvider>(
-                                        context,
-                                        listen: false)
-                                    .numberOfItem +
-                                1);
-                      },
-                      child: Text("ADD"),
-                    ),
-                  ],
-                ),
-                Text("Number of Pizza"),
-                Text(Provider.of<PizzaProvider>(context, listen: false)
-                    .numberOfPizza
-                    .toString()),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        print("object2");
-                        Provider.of<PizzaProvider>(context, listen: false)
-                            .changeNumberOfItem(Provider.of<PizzaProvider>(
-                                        context,
-                                        listen: false)
-                                    .numberOfPizza +
-                                1);
-                      },
-                      child: Text("ADD"),
-                    ),
-                  ],
-                ),
+              children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Screen2(),
-                      ),
-                    );
+                    Provider.of<ItemProvider>(context, listen: false)
+                        .changeNumberOfItem(
+                            Provider.of<ItemProvider>(context, listen: false)
+                                    .numberOfItem +
+                                1);
                   },
-                  child: Text(
-                    "Screen 2",
-                  ),
+                  child: Text("ADD"),
                 ),
               ],
             ),
-          ),
-        );
-      },
+            Text("Number of Pizza"),
+            Text(Provider.of<PizzaProvider>(context).numberOfPizza.toString()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    print("object2");
+                    Provider.of<PizzaProvider>(context, listen: false)
+                        .changeNumberOfItem(
+                            Provider.of<PizzaProvider>(context, listen: false)
+                                    .numberOfPizza +
+                                1);
+                  },
+                  child: Text("ADD"),
+                ),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Screen2(),
+                  ),
+                );
+              },
+              child: Text(
+                "Screen 2",
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
