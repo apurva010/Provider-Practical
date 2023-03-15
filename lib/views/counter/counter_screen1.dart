@@ -39,7 +39,7 @@ class CounterScreen1 extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CounterScreen2(),
+                    builder: (context) => Counter2(),
                   ));
                 },
                 child: Text("Counter Screen 2")),

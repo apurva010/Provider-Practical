@@ -13,9 +13,8 @@ class FoodProvider extends ChangeNotifier {
 }
 
 class Billing extends ChangeNotifier {
-  int bill;
   final FoodProvider foodProvider;
-  Billing(this.foodProvider, {this.bill = 0});
+  Billing(this.foodProvider);
 
   // int get billPrice {
   //   return (foodProvider.foodPrice * foodProvider.quantity);

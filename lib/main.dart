@@ -21,10 +21,9 @@ class MyApp extends StatelessWidget {
           create: (context) => FoodProvider(),
         ),
         ChangeNotifierProxyProvider<FoodProvider, Billing>(
-          create: (context) => Billing(
-              Provider.of<FoodProvider>(context, listen: false),
-              bill: 0),
-          update: (context, value, previous) => Billing(value, bill: 0),
+          create: (context) =>
+              Billing(Provider.of<FoodProvider>(context, listen: false)),
+          update: (context, foodProvider, previous) => Billing(foodProvider),
         )
       ],
       /*MultiProvider(
