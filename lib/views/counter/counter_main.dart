@@ -3,19 +3,19 @@ import 'package:provider/provider.dart';
 import 'package:provider_example/views/counter/counter_screen2.dart';
 import 'package:provider_example/views/counter/provider_class.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ProviderCounter(),
-      child: MaterialApp(
-        home: Counter1(),
-      ),
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ChangeNotifierProvider(
+//       create: (_) => ProviderCounter(),
+//       child: MaterialApp(
+//         home: Counter1(),
+//       ),
+//     );
+//   }
+// }
 
 class Counter1 extends StatelessWidget {
   const Counter1({Key? key}) : super(key: key);

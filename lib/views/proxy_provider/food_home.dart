@@ -16,17 +16,27 @@ class FoodHome extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            Consumer<Billing>(
+              builder: (context, billing, child) {
+                return Text(
+                  "Food Price : ${billing.foodProvider.foodPrice.toString()}",
+                  style: const TextStyle(fontSize: 18),
+                );
+              },
+            ),
+            /* Text(
               "Food Price : ${context.select(
                 (Billing b) => b.foodProvider.foodPrice.toString(),
               )}",
               style: const TextStyle(fontSize: 18),
-            ),
-            Text(
-              "Quantity Of Food : ${context.select(
-                (Billing b) => b.foodProvider.quantity.toString(),
-              )}",
-              style: const TextStyle(fontSize: 18),
+            ),*/
+            Consumer<Billing>(
+              builder: (context, billing, child) {
+                return Text(
+                  "Quantity Of Food : ${billing.foodProvider.quantity.toString()}",
+                  style: const TextStyle(fontSize: 18),
+                );
+              },
             ),
             ElevatedButton(
               onPressed: () {
@@ -39,9 +49,13 @@ class FoodHome extends StatelessWidget {
               },
               child: const Text("Increment"),
             ),
-            Text(
-              "Billing Amount : ${context.watch<Billing>().billPrice()}",
-              style: const TextStyle(fontSize: 18),
+            Consumer<Billing>(
+              builder: (context, billing, child) {
+                return Text(
+                  "Billing Amount : ${billing.billPrice()}",
+                  style: const TextStyle(fontSize: 18),
+                );
+              },
             ),
           ],
         ),
