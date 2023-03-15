@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_example/provider/counter_provider.dart';
-import 'package:provider_example/views/counter/counter_screen1.dart';
+import 'package:provider_example/provider/proxy_provider.dart';
+import 'package:provider_example/views/proxy_provider/food_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +14,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        // ChangeNotifierProvider(
+        //   create: (_) => CounterProvider(),
+        // ),
         ChangeNotifierProvider(
-          create: (_) => CounterProvider(),
+          create: (context) => FoodProvider(),
         ),
+        ChangeNotifierProxyProvider<FoodProvider, Billing>(
+          create: (context) => Billing(
+              Provider.of<FoodProvider>(context, listen: false),
+              bill: 0),
+          update: (context, value, previous) => Billing(value, bill: 0),
+        )
       ],
       /*MultiProvider(
       providers: [
@@ -29,7 +38,7 @@ class MyApp extends StatelessWidget {
       ],*/
       child: MaterialApp(
         title: "Provider Practical",
-        home: CounterScreen1(),
+        home: FoodHome(),
       ),
     );
   }
