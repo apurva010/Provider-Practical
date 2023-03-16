@@ -10,13 +10,13 @@ class BurgerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Burger"),
+        title: const Text("Burger"),
       ),
       body: Center(
         child: Column(
           children: [
-            Consumer2<Burger, Pizza>(
-              builder: (context, burger, pizza, child) {
+            Consumer3<Burger, Pizza, Bill>(
+              builder: (context, burger, pizza, bill, child) {
                 return Column(
                   children: [
                     Text(burger.burgerPrice.toString()),
@@ -24,7 +24,7 @@ class BurgerScreen extends StatelessWidget {
                       onPressed: () {
                         burger.updateBurgerPrice(burger.burgerPrice + 50);
                       },
-                      child: Text(
+                      child: const Text(
                         "Add Burger",
                       ),
                     ),
@@ -33,11 +33,11 @@ class BurgerScreen extends StatelessWidget {
                       onPressed: () {
                         pizza.updatePizzaPrice(pizza.pizzaPrice + 50);
                       },
-                      child: Text(
+                      child: const Text(
                         "Add Pizza",
                       ),
                     ),
-                    Text(context.watch<Bill>().billAmount.toString()),
+                    Text(bill.billAmount.toString()),
                   ],
                 );
               },
