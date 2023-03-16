@@ -73,18 +73,23 @@ class HomeScreen2 extends StatelessWidget {
             border: Border.all(),
             borderRadius: BorderRadius.circular(5.0),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                'Hi, may name is ${context.select((Job j) => j.person.name)}',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              Text(
-                'Age: ${context.select((Job j) => j.person.age)}',
-              ),
-              Text(context.watch<Job>().title),
-            ],
+          child: Consumer<Job>(
+            builder: (context, value, child) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    // 'Hi, may name is ${context.select((Job j) => j.person.name)}',
+                    'Hi, may name is ${value.person.name}',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Text(
+                    'Age: ${value.person.age}',
+                  ),
+                  Text(value.title),
+                ],
+              );
+            },
           ),
         ),
       ),

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:provider_example/provider/proxy_provider.dart';
 import 'package:provider_example/views/proxy_provider/food_home.dart';
 
-import 'views/counter/counter_main.dart';
 import 'views/counter/provider_class.dart';
 
 void main() {
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => FoodProvider(),
+          lazy: true,
         ),
         ChangeNotifierProxyProvider<FoodProvider, Billing>(
           create: (context) =>

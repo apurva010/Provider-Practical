@@ -8,6 +8,7 @@ class FoodHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("FOOD HOME BUILD");
     return Scaffold(
       appBar: AppBar(
         title: const Text("Food Home"),
